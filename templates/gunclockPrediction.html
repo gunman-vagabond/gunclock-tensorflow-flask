@@ -1,0 +1,180 @@
+<html>
+<head>
+	<title>GunClock AI</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+function dispImg() {
+    var imgurl = $("#imgurl").val();
+    $("#img").attr("src", imgurl);
+    $("#imgurl_copy").val(imgurl);
+    $("#AIOut2").val("");
+}	     
+function dispImg2() {
+    var imgurl = $("#imgurl_select").val();
+    $("#img").attr("src", imgurl);
+    $("#imgurl_copy").val(imgurl);
+    $("#AIOut2").val("");
+}	     
+
+//window.onload = function(){
+//    dispImg2();
+//}
+
+</script>
+<style type="text/css">
+body,td,button,input,select {
+	font-size: 30px;
+}
+img {
+	max-width: 320px;
+}
+</style>
+</head>
+
+<body>
+
+<form action="/gunclockPrediction" method="POST">
+<table border="1">
+<tr><td>
+size
+<input type="text" name="size" value="{{ size_int }}" size="2">
+<br>
+time
+<input type="text" name="hour" value="{{ hour }}" size="2">:
+<input type="text" name="minute" value="{{ minute }}" size="2">
+<br>
+<input type="submit" value="サイズと時刻を変更">
+</td></tr>
+</table>
+</form>
+
+
+<table border="1">
+<tr><td bgcolor="#ffffff" style="line-height:normal">
+<pre  style="background-color:#ffffff;font-family:monospace">
+{{ gunClock }}
+</pre>
+</td></tr></table>
+
+<p>
+
+<form action="/gunclockPrediction" method="POST">
+<input type="hidden" name="size" value="{{ size_int }}">
+<input type="hidden" name="hour" value="{{ hour }}">
+<input type="hidden" name="minute" value="{{ minute }}">
+<input type="hidden" name="gunClock" value="{{ gunClock }}">
+<input type="hidden" name="doAI" value="1">
+
+<input type="submit" value="ガンマンAIで読み取り">
+</form>
+
+読みとり結果：
+<input type="text" value="{{ AIOut }}" size="5" style="font-size: 30pt;background-color: #ffff00">
+{{ hantei }}
+
+<hr>
+
+<select id="imgurl_select" onchange="dispImg2()">
+<option value="https://img.muji.net/img/item/4547315915217_1260.jpg">
+https://img.muji.net/img/item/4547315915217_1260.jpg
+</option>
+<option value="https://askul.c.yimg.jp/img/product/3L1/1585378_3L1.jpg">
+https://askul.c.yimg.jp/img/product/3L1/1585378_3L1.jpg
+</option>
+<option value="https://s3-ap-northeast-1.amazonaws.com/kurashicom-images/colorme/PA01034/348/product/69900180.jpg">
+https://s3-ap-northeast-1.amazonaws.com/kurashicom-images/colorme/PA01034/348/product/69900180.jpg
+</option>
+<option value="https://cdn.shopify.com/s/files/1/0246/1267/products/LC10-20A_1_01d8e849-1600-4e3b-b3a9-73e8b0b454b4.jpeg?v=1441294433">
+https://cdn.shopify.com/s/files/1/0246/1267/products/LC10-20A_1_01d8e849-1600-4e3b-b3a9-73e8b0b454b4.jpeg?v=1441294433
+</option>
+<option value="http://www.greeniche.jp/shopimages/greeniche/0000000058473.jpg">
+http://www.greeniche.jp/shopimages/greeniche/0000000058473.jpg
+</option>
+<option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIV0Fw0xxkmsdm1tVZ4mjzibDrjU9wfRdtZTGgTyk5DjMD9nAk">
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIV0Fw0xxkmsdm1tVZ4mjzibDrjU9wfRdtZTGgTyk5DjMD9nAk
+</option>
+<option value="https://image1.shopserve.jp/greenshop.co.jp/pic-labo/llimg/201-081.jpg?t=20170125162817">
+https://image1.shopserve.jp/greenshop.co.jp/pic-labo/llimg/201-081.jpg?t=20170125162817
+</option>
+<option value="http://livedoor.blogimg.jp/chocochica/imgs/0/9/09e4255d.jpg">
+http://livedoor.blogimg.jp/chocochica/imgs/0/9/09e4255d.jpg
+</option>
+<option value="https://img.muji.net/img/item/4549738890980_1260.jpg">
+https://img.muji.net/img/item/4549738890980_1260.jpg
+</option>
+<option value="http://livedoor.blogimg.jp/lowendman/imgs/6/c/6ccab20a.gif">
+http://livedoor.blogimg.jp/lowendman/imgs/6/c/6ccab20a.gif
+</option>
+<option value="https://kohacu.com/wp-content/uploads/2017/02/kohacu.com_05_clock-300x300.png">
+https://kohacu.com/wp-content/uploads/2017/02/kohacu.com_05_clock-300x300.png
+</option>
+<option value="https://www.bonjourlifestyle.nl/wp-content/uploads/2013/06/12-minuten.png">
+https://www.bonjourlifestyle.nl/wp-content/uploads/2013/06/12-minuten.png
+</option>
+<option value="http://www.silhouette-ac.com/sozai/m/123/72/123723m.jpg">
+http://www.silhouette-ac.com/sozai/m/123/72/123723m.jpg
+</option>
+<option value="http://cdn.q.st-hatena.com/questions/1270486063.jpg">
+http://cdn.q.st-hatena.com/questions/1270486063.jpg
+</option>
+<option value="https://tshop.r10s.jp/harry/cabinet/ws-event/hc-0082-black.jpg?fitin=198:198">
+https://tshop.r10s.jp/harry/cabinet/ws-event/hc-0082-black.jpg?fitin=198:198
+</option>
+<option value="https://www.sozai-library.com/wp-content/uploads/2016/03/7376-450x337.jpg">
+https://www.sozai-library.com/wp-content/uploads/2016/03/7376-450x337.jpg
+</option>
+<option value="http://pandaman.site/wp-content/uploads/2016/01/l_e_company_160.png">
+http://pandaman.site/wp-content/uploads/2016/01/l_e_company_160.png
+</option>
+<option value="https://images-na.ssl-images-amazon.com/images/I/71j2xx2e93L._SL1383_.jpg">
+https://images-na.ssl-images-amazon.com/images/I/71j2xx2e93L._SL1383_.jpg
+</option>
+<option value="https://image.biccamera.com/img/00000003569099_A01.jpg?sr.dw=600&sr.jqh=60&sr.dh=600&sr.mat=1">
+https://image.biccamera.com/img/00000003569099_A01.jpg?sr.dw=600&sr.jqh=60&sr.dh=600&sr.mat=1
+</option>
+<option value="https://unilab.gbb60166.jp/tokei/C0412roman.png">
+https://unilab.gbb60166.jp/tokei/C0412roman.png
+</option>
+<option value="http://www.mflash.biz/img/022z.jpg">
+http://www.mflash.biz/img/022z.jpg
+</option>
+<option value="">
+</option>
+</select>
+<!--
+<button onclick="dispImg2()">画像表示</button>
+-->
+<br>
+
+<input type="text" id="imgurl" value="{{ imgurl }}">
+<button onclick="dispImg()">画像表示</button>
+<br>
+
+<img id="img" src="{{ imgurl }}"> 
+
+<form action="/gunclockPrediction" method="POST">
+<input type="hidden" name="doAI2" value="1">
+<input type="hidden" id="imgurl_copy" name="imgurl_copy" value="{{ imgurl }}">
+<input type="submit" value="ガンマンAIで読み取り">
+</form>
+
+読みとり結果：
+<input type="text" id="AIOut2" value="{{ AIOut2 }}" size="5" style="font-size: 30pt;background-color: #ffff00">
+
+<hr>
+<form method="POST" enctype="multipart/form-data">
+<input type="file" name="file">
+<p>
+<input type="submit" value="ガンマンAIで読み取り">
+</form>
+
+読みとり結果：
+<input type="text" id="AIOut3" value="{{ AIOut3 }}" size="5" style="font-size: 30pt;background-color: #ffff00">
+
+<p>
+
+<img src="{{ img3filename }}">
+
+</body>
+</html>
